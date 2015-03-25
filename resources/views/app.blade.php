@@ -20,7 +20,9 @@
 
 	<!--AngularJS-->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular-route.js"></script>
 	<script src="{{URL::to('/')}}/js/app.js"></script>
+	<script src="{{URL::to('/')}}/js/config.routes.js"></script>
 </head>
 <body>
 	<nav class="navbar navbar-default">

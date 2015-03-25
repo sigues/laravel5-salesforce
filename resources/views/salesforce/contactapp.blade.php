@@ -1,10 +1,12 @@
 @extends('app')
 
 @section('content')
-
 <div class="container" ng-app="contactApp" ng-controller="contactController">
     <h1>ContactApp</h1>
     <div class="row">
+        <div class="col-md-3">
+                User: <strong>{{ $user->getUserFullName() }}</strong><br>
+        </div>
         <div class="col-md-4">
             <form name="contactForm" method="post">
                 First name: <input type='text' ng-model="contact.FirstName"><br>
@@ -16,6 +18,7 @@
             </form>
         </div>
     </div>
+    <div ng-view></div>
     <hr>
     <div class="row">
         <div class="col-md-8">
@@ -23,7 +26,7 @@
                 <tr ng-repeat='contact in contacts'>
                     <!-- <td><input type="checkbox" ng-true-value="1" ng-false-value="'0'" 
                         ng-model="contact.done" ng-change="updateContact(contact)"></td> !-->
-                    <td><% contact.Id %></td>
+                    <td><a href="#/Contact/<% contact.Id %>"><% contact.Id %></a></td>
                     <td><% contact.FirstName %> <% contact.LastName %></td>
                     <td><% contact.Phone %></td>
                     <td><% contact.BirthDate %></td>

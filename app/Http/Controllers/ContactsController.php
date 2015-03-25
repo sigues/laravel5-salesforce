@@ -82,4 +82,11 @@ class ContactsController extends Controller {
 		$response = $salesforce->client->delete(array(0=>$id));
 	}
 
+	public function contact($id)
+	{
+		$salesforce = new App\Salesforce();
+        $result = $salesforce->client->query('select Id, FirstName, LastName, Phone, BirthDate from Contact where Id = \''.$id.'\'');
+        return response()->json($result->getQueryResult()->getRecords());
+	}
+
 }

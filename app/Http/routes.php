@@ -18,6 +18,7 @@ Route::get('home', 'HomeController@index');
 Route::get('salesforce', 'SalesforceController@index');
 
 Route::resource('api/contacts','ContactsController');
+Route::get('api/contact/{id}','ContactsController@contact');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

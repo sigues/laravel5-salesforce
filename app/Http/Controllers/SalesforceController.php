@@ -33,7 +33,9 @@ class SalesforceController extends Controller {
      */
     public function index()
     {
-        return view('salesforce.contactapp');
+        $salesforce = new App\Salesforce();
+        $user = $salesforce->getUserInfo();
+        return view('salesforce.contactapp',array('user'=>$user));
     }
 
 }

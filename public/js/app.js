@@ -1,5 +1,4 @@
-
-var app = angular.module('contactApp', [], function($interpolateProvider) {
+var app = angular.module('contactApp', ['ngRoute'], function($interpolateProvider) {
     $interpolateProvider.startSymbol('<%');
     $interpolateProvider.endSymbol('%>');
 });
@@ -60,6 +59,26 @@ app.controller('contactController', function($scope, $http) {
     };
  
  
+    $scope.init();
+ 
+});
+
+app.controller('profileController', function($scope, $http, $routeParams) {
+    $scope.profile = [];
+    $scope.loading = false;
+    $scope.name = "profileController";
+    $scope.params = $routeParams;
+ 
+    $scope.init = function() {
+        $scope.loading = true;
+        console.log($scope.profile);
+        $http.get('/api/contact/'+$scope.params.contactId).
+        success(function(data, status, headers, config) {
+            $scope.profile = data;
+            $scope.loading = false;
+        });
+    }
+
     $scope.init();
  
 });

@@ -32,4 +32,8 @@ class Salesforce extends Model {
         $this->client = $client;
     }
 
+    public function getUserInfo(){
+        return $this->client->getUserInfo();
+    }
+
 }
