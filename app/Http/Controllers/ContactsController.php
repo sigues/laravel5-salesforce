@@ -86,7 +86,8 @@ class ContactsController extends Controller {
 
 	public function contact($id)
 	{
-        $result = $this->contactModel->client->query('select Id, FirstName, LastName, Phone, BirthDate from Contact where Id = \''.$id.'\'');
+        //$result = $this->contactModel
+        $result = $this->contactModel->getContact($id);
         return response()->json($result->getQueryResult()->getRecords());
 	}
 

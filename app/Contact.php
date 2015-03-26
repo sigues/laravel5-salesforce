@@ -26,4 +26,13 @@ class Contact extends Model {
         return $response->getQueryResult()->getRecords();
     }
 
+    public function getContact($id){
+        $result = $this->salesforce->client->query('select Id, FirstName, LastName, Phone, BirthDate,
+        (select OpenActivity.Id, OpenActivity.CreatedDate, OpenActivity.Description, OpenActivity.ActivityType,
+                    OpenActivity.Priority, OpenActivity.Status, OpenActivity.ActivityDate, OpenActivity.Subject 
+                from OpenActivities) from Contact where Id = \''.$id.'\'');
+        $response = $this->salesforce->prepareResponse($result);
+        return $response;
+    }
+
 }

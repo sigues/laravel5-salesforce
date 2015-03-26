@@ -37,8 +37,35 @@ class Salesforce extends Model {
     }
 
     public function describe($object){
-        
         return $this->client->describeSObjects(array($object))[0];
+    }
+
+    public function prepareResponse($response){
+        $result = $this->prepareResponseRecords($response);
+        return $result;
+    }
+
+    public function prepareResponseRecords($response){
+        //$response->getQueryResult()->getRecords()
+        // dd($response->getQueryResult());
+        foreach($response as $id=>$record){
+            $record = $this->prepareRow($record);
+            $response->$id = $record;
+        }
+        return $response;
+    }
+
+    public function prepareRow($record){
+        foreach($record as $col=>$value){
+            if(is_object($value)){
+                if(is_object($record)){
+                    $record->$col = $this->prepareRow($value);
+                } else {
+                    $record[$col] = $this->prepareRow($value);
+                }
+            }
+        }
+        return $record;
     }
 
 }
