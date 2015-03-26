@@ -36,4 +36,9 @@ class Salesforce extends Model {
         return $this->client->getUserInfo();
     }
 
+    public function describe($object){
+        
+        return $this->client->describeSObjects(array($object))[0];
+    }
+
 }

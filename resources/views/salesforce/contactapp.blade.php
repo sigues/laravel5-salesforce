@@ -4,7 +4,7 @@
 <div class="container" ng-app="contactApp" ng-controller="contactController">
     <h1>ContactApp</h1>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
                 User: <strong>{{ $user->getUserFullName() }}</strong><br>
         </div>
         <div class="col-md-4">
@@ -21,7 +21,7 @@
     <div ng-view></div>
     <hr>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <table class="table table-striped">
                 <tr ng-repeat='contact in contacts'>
                     <!-- <td><input type="checkbox" ng-true-value="1" ng-false-value="'0'" 
@@ -29,7 +29,7 @@
                     <td><a href="#/Contact/<% contact.Id %>"><% contact.Id %></a></td>
                     <td><% contact.FirstName %> <% contact.LastName %></td>
                     <td><% contact.Phone %></td>
-                    <td><% contact.BirthDate %></td>
+                    <td><% contact.Birthdate['date'] %></td>
                     <td><button class="btn btn-danger btn-xs" ng-click="deleteContact($index)">  <span class="glyphicon glyphicon-trash" ></span></button></td>
                 </tr>
             </table>
